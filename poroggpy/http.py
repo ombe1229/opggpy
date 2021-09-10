@@ -4,7 +4,7 @@ from types import TracebackType
 
 
 class PoroggHttpClient:
-    BASE_URL = "https://poro.gg/"
+    BASE_URL = "https://poro.gg"
 
     def __init__(self, session: Optional[ClientSession] = None) -> None:
         self.session = session
@@ -34,3 +34,8 @@ class PoroggHttpClient:
             method, self.BASE_URL + endpoint, **kwargs
         ) as r:
             return await r.text()
+
+    async def get_champion_sr(
+        self, champion: str, lane: Literal["top", "mid", "jng", "adc", "sup"]
+    ) -> Any:
+        return await self.request("GET", f"/champions/{champion}/sr/{lane}")
