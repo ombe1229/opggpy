@@ -3,7 +3,7 @@ from aiohttp import ClientSession
 from types import TracebackType
 
 
-class OpggHttpClient:
+class PoroggHttpClient:
     BASE_URL = "https://poro.gg/"
 
     def __init__(self, session: Optional[ClientSession] = None) -> None:
@@ -13,7 +13,7 @@ class OpggHttpClient:
         if self.session:
             await self.session.close()
 
-    async def __aenter__(self) -> "OpggHttpClient":
+    async def __aenter__(self) -> "PoroggHttpClient":
         return self
 
     async def __aexit__(
