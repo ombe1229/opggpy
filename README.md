@@ -1,3 +1,3 @@
 # opggpy
 
- > opgg
+ > opgg python library
