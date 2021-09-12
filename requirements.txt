@@ -1,1 +1,3 @@
 aiohttp==3.7.4.post0
+bs4==0.0.1
+static-data-dp==0.0.1
