@@ -17,3 +17,7 @@ class ChampionSr:
     @property
     def skill_priority(self) -> list[str]:
         return self._data["skill_priority"]
+
+    @property
+    def item(self) -> list[str]:
+        return self._data["item"]

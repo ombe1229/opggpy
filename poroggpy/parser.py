@@ -1,12 +1,12 @@
 from typing import Union
 from bs4 import BeautifulSoup
 import re
-import static_data
+import static_data_dp
 
 
 class PoroggParser:
     def __init__(self):
-        self.ddragon = static_data.ddragon()
+        self.ddragon = static_data_dp.ddragon()
 
     @staticmethod
     def slice_url(url: str) -> str:
@@ -62,5 +62,14 @@ class PoroggParser:
         data["skill_priority"] = [
             skill.find("span").text for skill in skills
         ]  # [Q, E, W]
+
+        item_div = soup.find(
+            "div",
+            {
+                "class": "champion-build__content legendary-item-build__content",
+            },
+        )
+        items = item_div.find("div", {"class": "champion-build__icons"})
+        data["item"] = [self.slice_url(item["src"]) for item in items.find_all("img")]
 
         return data
