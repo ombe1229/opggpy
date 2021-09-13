@@ -13,7 +13,7 @@ class PoroggParser:
         reg = re.compile(r"(?<=/|[/0-9_])[a-zA-Z]+(?=\.png)")
         return reg.search(url).group()
 
-    async def parse_ch_sr(self, content: str) -> dict[list[Union[str, int]]]:
+    async def parse_ch_sr(self, content: str) -> dict[str, list[Union[str, int]]]:
         data = {}
         soup = BeautifulSoup(content, "html.parser")
 
@@ -59,6 +59,8 @@ class PoroggParser:
             },
         )
         skills = skill_div.find_all("div", {"class": "champion__skill"})
-        data["skill"] = [skill.find("span").text for skill in skills]  # [Q, E, W]
+        data["skill_priority"] = [
+            skill.find("span").text for skill in skills
+        ]  # [Q, E, W]
 
         return data
