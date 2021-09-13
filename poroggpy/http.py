@@ -35,7 +35,5 @@ class PoroggHttpClient:
         ) as r:
             return await r.text()
 
-    async def get_ch_sr(
-        self, champion: str, lane: Literal["top", "mid", "jng", "adc", "sup"]
-    ) -> Any:
+    async def get_ch_sr(self, champion: str, lane: str) -> Any:
         return await self.request("GET", f"/champions/{champion}/sr/{lane}")
